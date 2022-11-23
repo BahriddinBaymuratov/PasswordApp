@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:context=".fragment.DetailFragment">
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="match_parent"
+        android:layout_height="230dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/img"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="83dp"
+        android:layout_height="111dp"
+        android:layout_marginStart="44dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+        app:layout_constraintStart_toStartOf="@+id/imageView2"
+        app:layout_constraintTop_toTopOf="@+id/imageView2"
+        app:layout_constraintVertical_bias="0.47"
+        tools:src="@drawable/ic_baseline_person_24" />
+
+    <TextView
+        android:id="@+id/textUserName"
+        android:layout_width="58dp"
+        android:layout_height="13dp"
+        android:layout_marginStart="14dp"
+        android:textColor="#C2010101"
+        android:textSize="8sp"
+        android:layout_marginTop="56dp"
+        android:text="Akbarjon"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/imageView2"
+        tools:ignore="SmallSp" />
+
+    <TextView
+        android:id="@+id/textName"
+        android:layout_width="58dp"
+        android:layout_height="13dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="14dp"
+        android:text="Shuhratbekov"
+        android:textColor="#C2010101"
+        android:textSize="8sp"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/textUserName"
+        tools:ignore="SmallSp" />
+
+    <TextView
+        android:id="@+id/textMiddleName"
+        android:layout_width="58dp"
+        android:layout_height="13dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="14dp"
+        android:text="Boltavoy ogli"
+        android:textColor="#C2010101"
+        android:textSize="8sp"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/textName"
+        tools:ignore="SmallSp" />
+
+    <TextView
+        android:id="@+id/textDateBirthday"
+        android:layout_width="58dp"
+        android:layout_height="13dp"
+        android:layout_marginTop="11dp"
+        android:layout_marginStart="14dp"
+        android:text="19.07.2022"
+        android:textColor="#C2010101"
+        android:textSize="8sp"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/textMiddleName"
+        tools:ignore="SmallSp" />
+
+    <TextView
+        android:id="@+id/textNational"
+        android:layout_width="58dp"
+        android:layout_height="13dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="10dp"
+        android:text="Uzbekistan"
+        android:textColor="#C2010101"
+        android:textSize="8sp"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/textDateBirthday"
+        tools:ignore="SmallSp" />
+
+    <TextView
+        android:id="@+id/textGetDate"
+        android:layout_width="58dp"
+        android:layout_height="13dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="14dp"
+        android:text="19.07.2022"
+        android:textColor="#C2010101"
+        android:textSize="8sp"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/textNational"
+        tools:ignore="SmallSp" />
+
+    <TextView
+        android:id="@+id/textMuddati"
+        android:layout_width="58dp"
+        android:layout_height="13dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="10dp"
+        android:text="20.07.2032"
+        android:textColor="#C2010101"
+        android:textSize="8sp"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/textGetDate"
+        tools:ignore="SmallSp" />
+
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
