@@ -37,7 +37,7 @@
         </LinearLayout>
 
         <ImageButton
-            android:id="@+id/btnMenu"
+            android:id="@+id/btnDelete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

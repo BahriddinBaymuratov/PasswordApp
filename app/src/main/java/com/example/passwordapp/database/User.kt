@@ -5,8 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import kotlinx.parcelize.Parcelize
 
-
-@Entity(tableName = "PassportTable")
+@Entity(tableName = "PasswordTable")
 @Parcelize
 data class User(
     @PrimaryKey(autoGenerate = true)
@@ -15,7 +14,7 @@ data class User(
     val lastName: String,
     val middleName: String,
     val region: String,
-    val dateBirthday: String,
+    val dataBirthday: String,
     val gotDate: String,
     val lifeTime: String,
     val gender: String,
@@ -32,7 +31,7 @@ data class User(
         if (lastName != other.lastName) return false
         if (middleName != other.middleName) return false
         if (region != other.region) return false
-        if (dateBirthday != other.dateBirthday) return false
+        if (dataBirthday != other.dataBirthday) return false
         if (gotDate != other.gotDate) return false
         if (lifeTime != other.lifeTime) return false
         if (gender != other.gender) return false
@@ -47,12 +46,11 @@ data class User(
         result = 31 * result + lastName.hashCode()
         result = 31 * result + middleName.hashCode()
         result = 31 * result + region.hashCode()
-        result = 31 * result + dateBirthday.hashCode()
+        result = 31 * result + dataBirthday.hashCode()
         result = 31 * result + gotDate.hashCode()
         result = 31 * result + lifeTime.hashCode()
         result = 31 * result + gender.hashCode()
         result = 31 * result + image.contentHashCode()
         return result
     }
-
 }

@@ -1,8 +1,6 @@
 package com.example.passwordapp.fragment
 
-import android.app.AlertDialog
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,8 +8,10 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.CalendarView
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AlertDialog
+import androidx.fragment.app.Fragment
 import com.example.passwordapp.R
-import com.example.passwordapp.database.PassportDatabase
+import com.example.passwordapp.database.PasswordDatabase
 import com.example.passwordapp.database.User
 import com.example.passwordapp.databinding.FragmentAddBinding
 import com.example.passwordapp.util.Objects
@@ -20,19 +20,19 @@ import com.example.passwordapp.util.toast
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 
-
-class AddFragment : Fragment() {
+class AddUpdateFragment : Fragment() {
     private var _binding: FragmentAddBinding? = null
     private val binding get() = _binding!!
-    private val database by lazy { PassportDatabase.invoke(requireContext()) }
+    private val database by lazy { PasswordDatabase(requireContext()) }
     private lateinit var region: String
     private lateinit var gender: String
-    var month = ""
     var day = ""
+    var months = ""
     var year = ""
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentAddBinding.inflate(inflater, container, false)
@@ -45,15 +45,14 @@ class AddFragment : Fragment() {
         val arrayAdapter =
             ArrayAdapter(requireActivity(), android.R.layout.simple_list_item_1, Objects.regions)
         binding.autoCompleteRegion.setAdapter(arrayAdapter)
-        binding.autoCompleteRegion.setOnItemClickListener { adapterView, view, i, l ->
+        binding.autoCompleteRegion.setOnItemClickListener { _, _, i, _ ->
             region = Objects.regions[i]
         }
-        val arrayAdapter2 = ArrayAdapter(
-            requireActivity(), android.R.layout.simple_list_item_1, Objects.genders
-        )
+        val arrayAdapter2 =
+            ArrayAdapter(requireActivity(), android.R.layout.simple_list_item_1, Objects.genders)
         binding.autoCompleteGender.setAdapter(arrayAdapter2)
         binding.autoCompleteGender.onItemClickListener =
-            AdapterView.OnItemClickListener { p0, p1, pos, p3 ->
+            AdapterView.OnItemClickListener { _, _, pos, _ ->
                 gender = Objects.genders[pos]
             }
         binding.btnSave.setOnClickListener {
@@ -76,18 +75,19 @@ class AddFragment : Fragment() {
         alertDialog.apply {
             setView(view)
         }
-        calendarView.setOnDateChangeListener { _, year, month, day ->
-            date = "$year-${month.plus(1)}-$day"
-            this.month = month.plus(1).toString()
+        calendarView.setOnDateChangeListener { _, year, months, day ->
+            date = "${year}-${months.plus(1)}-${day}"
+            this.months = months.plus(1).toString()
             this.day = day.toString()
         }
         btnGet.setOnClickListener {
             val year = date.subSequence(0, 4).toString().toInt().plus(10)
             editText.setText(date)
-            binding.editLifeTime.setText("${this.year}-${this.month}-${this.day}")
+            binding.editLifeTime.setText("${year}-${this.months}-${this.day}")
             alertDialog.dismiss()
         }
         alertDialog.show()
+
     }
 
     private fun saveToDatabase() {
@@ -100,30 +100,26 @@ class AddFragment : Fragment() {
 
         if (name.isNotBlank() && lifeTime.isNotBlank() && ::region.isInitialized && ::gender.isInitialized) {
             AlertDialog.Builder(requireContext()).apply {
-                setMessage("Ma’lumotlariningiz to’g’ri ekanligiga \n" +
-                        "ishonchingiz komilmi?")
+                setMessage(
+                    "Ma’lumotlariningiz to’g’ri ekanligiga \n" +
+                            "ishonchingiz komilmi?"
+                )
                 setPositiveButton("Ha") { di, _ ->
-                    database.dao().savePassport(
+                    database.dao().savePassword(
                         User(
                             0,
-                            name,
-                            lastName,
-                            midName,
-                            region,
-                            dateBirthday,
-                            gotDate,
-                            lifeTime,
-                            gender,
-                            binding.imageView.toByteArray()
+                            name, lastName, midName, region,
+                            dateBirthday, gotDate, lifeTime,
+                            gender, binding.imageView.toByteArray()
                         )
                     )
-                    toast("Saved to database")
+                    toast("Ma'lumotlar bazasiga saqlandi !")
                     clearData()
                 }
                 setNegativeButton("Yo'q", null)
             }.create().show()
         } else {
-            toast("Enter a data!")
+            toast("Ma'lumotlarni to'ldiring !")
         }
     }
 
@@ -139,12 +135,12 @@ class AddFragment : Fragment() {
         binding.editMidName.text?.clear()
         binding.editGotDate.text?.clear()
         binding.editLifeTime.text?.clear()
+        binding.city.text?.clear()
+        binding.textDateBirthday.text?.clear()
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
-
 }

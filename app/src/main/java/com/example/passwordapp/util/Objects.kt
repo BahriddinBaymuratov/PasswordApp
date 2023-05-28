@@ -37,15 +37,6 @@ fun ImageView.toByteArray(): ByteArray {
     bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream)
     return stream.toByteArray()
 }
-
 fun ByteArray.toBitmap(): Bitmap? {
     return BitmapFactory.decodeByteArray(this, 0, this.size)
 }
-
-
-
-
-
-
-
-

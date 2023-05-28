@@ -22,7 +22,7 @@
     <fragment
         android:id="@+id/mainFragment"
         android:name="com.example.passwordapp.fragment.MainFragment"
-        android:label="Main Menu"
+        android:label="Asosiy menyu"
         tools:layout="@layout/fragment_main" >
         <action
             android:id="@+id/action_mainFragment_to_addFragment"
@@ -33,7 +33,7 @@
     </fragment>
     <fragment
         android:id="@+id/addFragment"
-        android:name="com.example.passwordapp.fragment.AddFragment"
-        android:label="fragment_add"
+        android:name="com.example.passwordapp.fragment.AddUpdateFragment"
+        android:label="Ro'yhatdan o'tish"
         tools:layout="@layout/fragment_add" />
 </navigation>

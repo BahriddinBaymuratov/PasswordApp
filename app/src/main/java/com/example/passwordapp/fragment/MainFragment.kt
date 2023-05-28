@@ -1,15 +1,15 @@
 package com.example.passwordapp.fragment
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.passwordapp.R
 import com.example.passwordapp.databinding.FragmentMainBinding
 
-class MainFragment : Fragment() {
+class MainFragment: Fragment() {
     private var _binding: FragmentMainBinding? = null
     private val binding get() = _binding!!
 

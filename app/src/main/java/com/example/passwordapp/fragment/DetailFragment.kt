@@ -1,10 +1,10 @@
 package com.example.passwordapp.fragment
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.example.passwordapp.database.User
 import com.example.passwordapp.databinding.FragmentDetailBinding
 import com.example.passwordapp.util.toBitmap
@@ -20,7 +20,8 @@ class DetailFragment : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentDetailBinding.inflate(inflater, container, false)
@@ -34,7 +35,7 @@ class DetailFragment : Fragment() {
             binding.textUserName.text = user?.lastName
             binding.textName.text = user?.name
             binding.textMiddleName.text = user?.middleName
-            binding.textDateBirthday.text = user?.dateBirthday
+            binding.textDateBirthday.text = user?.dataBirthday
             binding.textGetDate.text = user?.gotDate
             binding.textMuddati.text = user?.lifeTime
         }
@@ -44,7 +45,4 @@ class DetailFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
-
-
-
 }

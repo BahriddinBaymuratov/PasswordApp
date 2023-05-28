@@ -1,27 +1,26 @@
 package com.example.passwordapp.fragment
 
-import android.app.AlertDialog
 import android.os.Bundle
 import android.view.*
-import androidx.fragment.app.Fragment
 import android.widget.SearchView
+import androidx.appcompat.app.AlertDialog
 import androidx.core.os.bundleOf
 import androidx.core.view.MenuItemCompat
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.passwordapp.R
-import com.example.passwordapp.adapter.PassportAdapter
-import com.example.passwordapp.database.PassportDatabase
+import com.example.passwordapp.adapter.PasswordAdapter
+import com.example.passwordapp.database.PasswordDatabase
 import com.example.passwordapp.database.User
 import com.example.passwordapp.databinding.FragmentAllBinding
 import com.example.passwordapp.util.toast
 
 class AllFragment : Fragment() {
-
     private var _binding: FragmentAllBinding? = null
     private val binding get() = _binding!!
-    private val database by lazy { PassportDatabase.invoke(requireContext()) }
-    private lateinit var passportAdapter: PassportAdapter
+    private val database by lazy { PasswordDatabase.invoke(requireContext()) }
+    private lateinit var passportAdapter: PasswordAdapter
     private var passportList: MutableList<User> = mutableListOf()
 
     override fun onCreateView(
@@ -34,40 +33,41 @@ class AllFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        passportAdapter = PassportAdapter()
-        passportList = database.dao().getAllPassport() as MutableList<User>
+
+        passportAdapter = PasswordAdapter()
+        passportList = database.dao().getAllPassword() as MutableList<User>
         binding.recyclerView.apply {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = passportAdapter
         }
-        passportAdapter.passportList = passportList
-        passportAdapter.onItemClicked = {
-            val bundle = bundleOf("entity" to it)
+        passportAdapter.passwordList = passportList
+        passportAdapter.onItemClicked = { user ->
+            val bundle = bundleOf("entity" to user)
             findNavController().navigate(R.id.action_allFragment_to_detailFragment, bundle)
         }
-        passportAdapter.onDeleteClicked = { entity, pos ->
+        passportAdapter.onDeleteClicked = { user, pos ->
             AlertDialog.Builder(requireContext()).apply {
-                setTitle("Delete")
+                setTitle("O'chirish")
                 setIcon(R.drawable.ic_baseline_delete_outline_24)
-                setMessage("Delete this item?")
-                setPositiveButton("Yes") { di, _ ->
-                    database.dao().deletePassport(entity)
+                setMessage("Ma'lumot o'chirilsinmi ?")
+                setPositiveButton("Xa") { di, _ ->
+                    database.dao().deletePassword(user)
                     passportList.removeAt(pos)
                     passportAdapter.notifyItemRemoved(pos)
-                    toast("Passport deleted!")
+                    toast("Passport o'chirildi !")
                     di.dismiss()
                 }
-                setNeutralButton("Cancel", null)
+                setNeutralButton("Bekor qilish", null)
             }.create().show()
         }
         setHasOptionsMenu(true)
     }
+
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         requireActivity().menuInflater.inflate(R.menu.search_menu, menu)
         val menuItem = menu.findItem(R.id.search)
         val searchView = MenuItemCompat.getActionView(menuItem) as SearchView
-        searchView.setOnQueryTextListener(object :
-            SearchView.OnQueryTextListener {
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(p0: String?): Boolean {
                 return true
             }
@@ -81,11 +81,11 @@ class AllFragment : Fragment() {
 
     private fun filterAdapter(text: String) {
         val list = mutableListOf<User>()
-        for (entity in passportList) {
-            if (entity.name.lowercase().contains(text.lowercase()) || entity.lastName.lowercase()
+        for (user in passportList) {
+            if (user.name.lowercase().contains(text.lowercase()) || user.lastName.lowercase()
                     .contains(text.lowercase())
             ) {
-                list.add(entity)
+                list.add(user)
             }
         }
         passportAdapter.updateList(list)

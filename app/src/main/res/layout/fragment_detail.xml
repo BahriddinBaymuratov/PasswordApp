@@ -3,9 +3,24 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".fragment.DetailFragment">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Sizning ID Kartangiz"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:textSize="25sp"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toTopOf="@+id/imageView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.861" />
 
     <ImageView
         android:id="@+id/imageView2"
@@ -13,6 +28,7 @@
         android:layout_height="230dp"
         android:scaleType="fitXY"
         android:src="@drawable/img"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -35,10 +51,10 @@
         android:layout_width="58dp"
         android:layout_height="13dp"
         android:layout_marginStart="14dp"
-        android:textColor="#C2010101"
-        android:textSize="8sp"
         android:layout_marginTop="56dp"
         android:text="Akbarjon"
+        android:textColor="#C2010101"
+        android:textSize="8sp"
         app:layout_constraintStart_toEndOf="@+id/imageView"
         app:layout_constraintTop_toTopOf="@+id/imageView2"
         tools:ignore="SmallSp" />
@@ -47,8 +63,8 @@
         android:id="@+id/textName"
         android:layout_width="58dp"
         android:layout_height="13dp"
-        android:layout_marginTop="10dp"
         android:layout_marginStart="14dp"
+        android:layout_marginTop="10dp"
         android:text="Shuhratbekov"
         android:textColor="#C2010101"
         android:textSize="8sp"
@@ -60,8 +76,8 @@
         android:id="@+id/textMiddleName"
         android:layout_width="58dp"
         android:layout_height="13dp"
-        android:layout_marginTop="10dp"
         android:layout_marginStart="14dp"
+        android:layout_marginTop="10dp"
         android:text="Boltavoy ogli"
         android:textColor="#C2010101"
         android:textSize="8sp"
@@ -73,8 +89,8 @@
         android:id="@+id/textDateBirthday"
         android:layout_width="58dp"
         android:layout_height="13dp"
-        android:layout_marginTop="11dp"
         android:layout_marginStart="14dp"
+        android:layout_marginTop="11dp"
         android:text="19.07.2022"
         android:textColor="#C2010101"
         android:textSize="8sp"
@@ -99,8 +115,8 @@
         android:id="@+id/textGetDate"
         android:layout_width="58dp"
         android:layout_height="13dp"
-        android:layout_marginTop="10dp"
         android:layout_marginStart="14dp"
+        android:layout_marginTop="10dp"
         android:text="19.07.2022"
         android:textColor="#C2010101"
         android:textSize="8sp"
@@ -120,10 +136,6 @@
         app:layout_constraintStart_toEndOf="@+id/imageView"
         app:layout_constraintTop_toBottomOf="@+id/textGetDate"
         tools:ignore="SmallSp" />
-
-
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
